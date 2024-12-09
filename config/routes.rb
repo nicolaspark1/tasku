@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  get("/", { :controller => "tasks", :action => "index" })
+  devise_for :users
+
+  root to: "tasks#index"
 
   # Routes for the Review resource:
 
