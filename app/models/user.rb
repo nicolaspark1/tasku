@@ -27,4 +27,10 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
+
+  has_many  :tasks, class_name: "Task", foreign_key: "requester_id", dependent: :destroy
+
+  has_many  :reviews, class_name: "Review", foreign_key: "reviewer_id", dependent: :destroy
+  
+  has_many  :assignments, class_name: "Task", foreign_key: "tasker_id", dependent: :nullify
 end

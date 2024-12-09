@@ -1,0 +1,236 @@
+<div>
+  <div>
+    <h1>
+      Task #<%= @the_task.id %> details
+    </h1>
+
+    <div>
+      <div>
+        <a href="/tasks">
+          Go back
+        </a>
+      </div>
+
+      <div>
+        <a href="/delete_task/<%= @the_task.id %>">
+          Delete task
+        </a>
+      </div>
+    </div>
+
+    <dl>
+      <dt>
+        Title
+      </dt>
+      <dd>
+        <%= @the_task.title %>
+      </dd>
+
+      <dt>
+        Description
+      </dt>
+      <dd>
+        <%= @the_task.description %>
+      </dd>
+
+      <dt>
+        Category
+      </dt>
+      <dd>
+        <%= @the_task.category_id %>
+      </dd>
+
+      <dt>
+        Fee
+      </dt>
+      <dd>
+        <%= @the_task.fee %>
+      </dd>
+
+      <dt>
+        Deadline
+      </dt>
+      <dd>
+        <%= @the_task.deadline %>
+      </dd>
+
+      <dt>
+        Location
+      </dt>
+      <dd>
+        <%= @the_task.location %>
+      </dd>
+
+      <dt>
+        Requester
+      </dt>
+      <dd>
+        <%= @the_task.requester_id %>
+      </dd>
+
+      <dt>
+        Status
+      </dt>
+      <dd>
+        <%= @the_task.status %>
+      </dd>
+
+      <dt>
+        Accepted at
+      </dt>
+      <dd>
+        <%= @the_task.accepted_at %>
+      </dd>
+
+      <dt>
+        Completed at
+      </dt>
+      <dd>
+        <%= @the_task.completed_at %>
+      </dd>
+
+      <dt>
+        Tasker
+      </dt>
+      <dd>
+        <%= @the_task.tasker_id %>
+      </dd>
+
+      <dt>
+        Reviews count
+      </dt>
+      <dd>
+        <%= @the_task.reviews_count %>
+      </dd>
+
+      <dt>
+        Created at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_task.created_at) %> ago
+      </dd>
+
+      <dt>
+        Updated at
+      </dt>
+      <dd>
+        <%= time_ago_in_words(@the_task.updated_at) %> ago
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<hr>
+
+
+<div>
+  <div>
+    <h2>
+      Edit task
+    </h2>
+
+    <form action="/modify_task/<%= @the_task.id %>"  method="post" >
+      <div>
+        <label for="title_box">
+          Title
+        </label>
+
+        <input type="text" id="title_box" name="query_title" value="<%= @the_task.title %>">
+      </div>
+
+      <div>
+        <label for="description_box">
+          Description
+        </label>
+
+        <textarea id="description_box" name="query_description"><%= @the_task.description %></textarea>
+      </div>
+
+      <div>
+        <label for="category_id_box">
+          Category
+        </label>
+
+        <input type="text" id="category_id_box" name="query_category_id" value="<%= @the_task.category_id %>">
+      </div>
+
+      <div>
+        <label for="fee_box">
+          Fee
+        </label>
+
+        <input type="text" id="fee_box" name="query_fee" value="<%= @the_task.fee %>">
+      </div>
+
+      <div>
+        <label for="deadline_box">
+          Deadline
+        </label>
+
+        <input type="time" id="deadline_box" name="query_deadline" value="<%= @the_task.deadline %>">
+      </div>
+
+      <div>
+        <label for="location_box">
+          Location
+        </label>
+
+        <input type="text" id="location_box" name="query_location" value="<%= @the_task.location %>">
+      </div>
+
+      <div>
+        <label for="requester_id_box">
+          Requester
+        </label>
+
+        <input type="text" id="requester_id_box" name="query_requester_id" value="<%= @the_task.requester_id %>">
+      </div>
+
+      <div>
+        <label for="status_box">
+          Status
+        </label>
+
+        <input type="text" id="status_box" name="query_status" value="<%= @the_task.status %>">
+      </div>
+
+      <div>
+        <label for="accepted_at_box">
+          Accepted at
+        </label>
+
+        <input type="date" id="accepted_at_box" name="query_accepted_at" value="<%= @the_task.accepted_at %>">
+      </div>
+
+      <div>
+        <label for="completed_at_box">
+          Completed at
+        </label>
+
+        <input type="date" id="completed_at_box" name="query_completed_at" value="<%= @the_task.completed_at %>">
+      </div>
+
+      <div>
+        <label for="tasker_id_box">
+          Tasker
+        </label>
+
+        <input type="text" id="tasker_id_box" name="query_tasker_id" value="<%= @the_task.tasker_id %>">
+      </div>
+
+      <div>
+        <label for="reviews_count_box">
+          Reviews count
+        </label>
+
+        <input type="text" id="reviews_count_box" name="query_reviews_count" value="<%= @the_task.reviews_count %>">
+      </div>
+
+      <button>
+        Update task
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
