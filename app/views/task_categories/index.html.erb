@@ -1,0 +1,118 @@
+<div>
+  <div>
+    <h1>
+      List of all task categories
+    </h1>
+  </div>
+</div>
+
+<hr>
+
+<div>
+  <div>
+    <h2>
+      Add a new task category
+    </h2>
+
+    <form action="/insert_task_category" method="post">
+      <div>
+        <label for="name_box">
+          Name
+        </label>
+
+        <input type="text" id="name_box" name="query_name">
+      </div>
+
+      <div>
+        <label for="desc_box">
+          Desc
+        </label>
+
+        <textarea id="desc_box" name="query_desc" rows="3"></textarea>
+      </div>
+
+      <div>
+        <label for="tasks_count_box">
+          Tasks count
+        </label>
+
+        <input type="text" id="tasks_count_box" name="query_tasks_count">
+      </div>
+
+      <button>
+        Create task category
+      </button>
+    </form>
+  </div>
+</div>
+
+<hr>
+<div>
+  <div>
+    <table border="1">
+      <tr>
+        <th>
+          ID
+        </th>
+
+        <th>
+          Name
+        </th>
+
+        <th>
+          Desc
+        </th>
+
+        <th>
+          Tasks count
+        </th>
+
+        <th>
+          Created at
+        </th>
+
+        <th>
+          Updated at
+        </th>
+
+        <th>
+        </th>
+      </tr>
+
+      <% @list_of_task_categories.each do |a_task_category| %>
+      <tr>
+        <td>
+          <%= a_task_category.id %>
+        </td>
+
+        <td>
+          <%= a_task_category.name %>
+        </td>
+
+        <td>
+          <%= a_task_category.desc %>
+        </td>
+
+        <td>
+          <%= a_task_category.tasks_count %>
+        </td>
+
+        <td>
+          <%= time_ago_in_words(a_task_category.created_at) %> ago
+        </td>
+        <td>
+          <%= time_ago_in_words(a_task_category.updated_at) %> ago
+        </td>
+
+        <td>
+          <a href="/task_categories/<%= a_task_category.id %>">
+            Show details
+          </a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<hr>
