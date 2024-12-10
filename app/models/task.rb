@@ -21,7 +21,7 @@
 class Task < ApplicationRecord
   belongs_to :requester, required: true, class_name: "User", foreign_key: "requester_id", counter_cache: true
 
-  belongs_to :tasker, class_name: "User", foreign_key: "tasker_id", counter_cache: :assignments_count
+  belongs_to :tasker, optional: true, class_name: "User", foreign_key: "tasker_id", counter_cache: :assignments_count
 
   has_many  :reviews, class_name: "Review", foreign_key: "task_id", dependent: :destroy
 
