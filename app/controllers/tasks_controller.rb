@@ -4,6 +4,9 @@ class TasksController < ApplicationController
 
     @list_of_tasks = matching_tasks.order({ :created_at => :desc })
 
+    matching_task_categories = TaskCategory.all
+    @list_of_task_categories = matching_task_categories.order({ :created_at => :desc })
+
     render({ :template => "tasks/index" })
   end
 
@@ -24,13 +27,10 @@ class TasksController < ApplicationController
     the_task.category_id = params.fetch("query_category_id")
     the_task.fee = params.fetch("query_fee")
     the_task.deadline = params.fetch("query_deadline")
+
     the_task.location = params.fetch("query_location")
-    the_task.requester_id = params.fetch("query_requester_id")
-    the_task.status = params.fetch("query_status")
-    the_task.accepted_at = params.fetch("query_accepted_at")
-    the_task.completed_at = params.fetch("query_completed_at")
-    the_task.tasker_id = params.fetch("query_tasker_id")
-    the_task.reviews_count = params.fetch("query_reviews_count")
+    the_task.requester_id = current_user.id if user_signed_in?
+    the_task.status = "requested"
 
     if the_task.valid?
       the_task.save

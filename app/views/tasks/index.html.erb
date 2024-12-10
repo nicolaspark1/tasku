@@ -36,7 +36,11 @@
           Category
         </label>
 
-        <input type="text" id="category_id_box" name="query_category_id">
+        <select id="category_id_box" name="query_category_id">
+          <% @list_of_task_categories.each do |category| %>
+            <option value="<%= category.id %>"><%= category.name %></option>
+          <% end %>
+        </select>
       </div>
 
       <div>
@@ -44,7 +48,7 @@
           Fee
         </label>
 
-        <input type="text" id="fee_box" name="query_fee">
+        $ <input type="text" id="fee_box" name="query_fee" placeholder="0.00">
       </div>
 
       <div>
@@ -69,46 +73,6 @@
         </label>
 
         <input type="text" id="requester_id_box" name="query_requester_id">
-      </div>
-
-      <div>
-        <label for="status_box">
-          Status
-        </label>
-
-        <input type="text" id="status_box" name="query_status">
-      </div>
-
-      <div>
-        <label for="accepted_at_box">
-          Accepted at
-        </label>
-
-        <input type="date" id="accepted_at_box" name="query_accepted_at">
-      </div>
-
-      <div>
-        <label for="completed_at_box">
-          Completed at
-        </label>
-
-        <input type="date" id="completed_at_box" name="query_completed_at">
-      </div>
-
-      <div>
-        <label for="tasker_id_box">
-          Tasker
-        </label>
-
-        <input type="text" id="tasker_id_box" name="query_tasker_id">
-      </div>
-
-      <div>
-        <label for="reviews_count_box">
-          Reviews count
-        </label>
-
-        <input type="text" id="reviews_count_box" name="query_reviews_count">
       </div>
 
       <button>
