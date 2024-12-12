@@ -29,49 +29,51 @@
       </form>
     <% end %>
   </div>
-    <dl>
-      <dt>Title</dt>
-      <dd><%= @the_task.title %></dd>
+    <% if @the_task.requester_id != current_user.id || current_user.role == "admin" %>
+      <dl>
+        <dt>Title</dt>
+        <dd><%= @the_task.title %></dd>
 
-      <dt>Description</dt>
-      <dd><%= @the_task.description %></dd>
+        <dt>Description</dt>
+        <dd><%= @the_task.description %></dd>
 
-      <dt>Category</dt>
-      <dd><%= @the_task.category_id %></dd>
+        <dt>Category</dt>
+        <dd><%= @the_task.category_id %></dd>
 
-      <dt>Fee</dt>
-      <dd><%= @the_task.fee %></dd>
+        <dt>Fee</dt>
+        <dd><%= @the_task.fee %></dd>
 
-      <dt>Deadline</dt>
-      <dd><%= @the_task.deadline %></dd>
+        <dt>Deadline</dt>
+        <dd><%= @the_task.deadline %></dd>
 
-      <dt>Location</dt>
-      <dd><%= @the_task.location %></dd>
+        <dt>Location</dt>
+        <dd><%= @the_task.location %></dd>
 
-      <dt>Requester</dt>
-      <dd><%= @the_task.requester_id %></dd>
+        <dt>Requester</dt>
+        <dd><%= @the_task.requester_id %></dd>
 
-      <dt>Status</dt>
-      <dd><%= @the_task.status %></dd>
+        <dt>Status</dt>
+        <dd><%= @the_task.status %></dd>
 
-      <dt>Accepted at</dt>
-      <dd><%= @the_task.accepted_at %></dd>
+        <dt>Accepted at</dt>
+        <dd><%= @the_task.accepted_at %></dd>
 
-      <dt>Completed at</dt>
-      <dd><%= @the_task.completed_at %></dd>
+        <dt>Completed at</dt>
+        <dd><%= @the_task.completed_at %></dd>
 
-      <dt>Tasker</dt>
-      <dd><%= @the_task.tasker_id %></dd>
+        <dt>Tasker</dt>
+        <dd><%= @the_task.tasker_id %></dd>
 
-      <dt>Reviews count</dt>
-      <dd><%= @the_task.reviews_count %></dd>
+        <dt>Reviews count</dt>
+        <dd><%= @the_task.reviews_count %></dd>
 
-      <dt>Created at</dt>
-      <dd><%= time_ago_in_words(@the_task.created_at) %> ago</dd>
+        <dt>Created at</dt>
+        <dd><%= time_ago_in_words(@the_task.created_at) %> ago</dd>
 
-      <dt>Updated at</dt>
-      <dd><%= time_ago_in_words(@the_task.updated_at) %> ago</dd>
-    </dl>
+        <dt>Updated at</dt>
+        <dd><%= time_ago_in_words(@the_task.updated_at) %> ago</dd>
+      </dl>
+    <% end %>
   </div>
 </div>
 
