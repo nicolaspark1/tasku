@@ -87,9 +87,9 @@ class TasksController < ApplicationController
       @the_task.status = "complete"
       @the_task.completed_at = Time.now
       @the_task.save
-      redirect_to task_path(@the_task), notice: "You have completed this task."
+      redirect_to("/tasks/#{@the_task.id}", notice: "You have completed this task.")
     else
-      redirect_to task_path(@the_task), alert: "This task cannot be completed."
+      redirect_to("/tasks/#{@the_task.id}", alert: "This task cannot be completed.")
     end
   end
 

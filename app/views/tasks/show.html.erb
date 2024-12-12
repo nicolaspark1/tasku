@@ -20,7 +20,7 @@
       <% end %>
     </div>
   <div>
-    <% if @the_task.status != "in progress" && @the_task.requester_id != current_user.id%> 
+    <% if @the_task.status == "requested" && @the_task.requester_id != current_user.id %> 
       <form action="/tasks/<%= @the_task.id %>/take_on/" method="post">
 
         <button>
@@ -29,6 +29,24 @@
       </form>
     <% end %>
   </div>
+
+  <div>
+    <% if @the_task.status == "in progress" && @the_task.requester_id != current_user.id%> 
+      <form action="/tasks/<%= @the_task.id %>/complete/" method="post">
+
+        <button>
+            Complete Task
+          </button>
+      </form>
+    <% end %>
+  </div>
+
+  <div>
+    <% if @the_task.status == "complete"%> 
+      Task Completed!
+    <% end %>
+  </div>
+  
     <% if @the_task.requester_id != current_user.id || current_user.role == "admin" %>
       <dl>
         <dt>Title</dt>
