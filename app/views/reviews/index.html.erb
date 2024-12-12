@@ -8,51 +8,55 @@
 
 <hr>
 
-<div>
+<% if current_user %>
   <div>
-    <h2>
-      Add a new review
-    </h2>
+    <div>
+      <h2>
+        Add a new review
+      </h2>
 
-    <form action="/insert_review" method="post">
-      <div>
-        <label for="task_id_box">
-          Task
-        </label>
+      <form action="/insert_review" method="post">
+        <div>
+          <label for="task_id_box">
+            Task
+          </label>
 
-        <input type="text" id="task_id_box" name="query_task_id" placeholder="Enter the task ID">
-      </div>
+          <input type="text" id="task_id_box" name="query_task_id" placeholder="Enter the task ID">
+        </div>
 
-      <input type="hidden" id="reviewer_id_box" name="query_reviewer_id" value="<%= current_user.id %>">
+        <input type="hidden" id="reviewer_id_box" name="query_reviewer_id" value="<%= current_user.id %>">
 
-      <div>
-        <label for="rating_box">
-          Rating
-        </label>
+        <div>
+          <label for="rating_box">
+            Rating
+          </label>
 
-        <select id="rating_box" name="query_rating">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-          <option value="5">5</option>
-        </select>
-      </div>
+          <select id="rating_box" name="query_rating">
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+        </div>
 
-      <div>
-        <label for="comment_box">
-          Comment
-        </label>
+        <div>
+          <label for="comment_box">
+            Comment
+          </label>
 
-        <textarea id="comment_box" name="query_comment" rows="3"></textarea>
-      </div>
+          <textarea id="comment_box" name="query_comment" rows="3"></textarea>
+        </div>
 
-      <button>
-        Create review
-      </button>
-    </form>
+        <button>
+          Create review
+        </button>
+      </form>
+    </div>
   </div>
-</div>
+<% else %>
+  <p> Please login to write a review.</p>
+<% end %>
 
 <hr>
 <div>

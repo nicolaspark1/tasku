@@ -47,8 +47,8 @@ task({ :sample_data => :environment }) do
         review = Review.new
         review.task_id = task.id
         review.reviewer_id = User.all.sample.id
-        rating = rand(1..5)
-        comment = Faker::Lorem.sentence(word_count: 10)
+        review.rating = rand(1..5)
+        review.comment = Faker::Restaurant.review
         review.save
       end
     end
