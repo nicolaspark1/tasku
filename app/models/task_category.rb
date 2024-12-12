@@ -10,5 +10,7 @@
 #  updated_at  :datetime         not null
 #
 class TaskCategory < ApplicationRecord
+
   has_many  :tasks, class_name: "Task", foreign_key: "category_id", dependent: :destroy
+  
 end

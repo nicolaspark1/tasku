@@ -11,91 +11,78 @@
         </a>
       </div>
 
-      <div>
-        <a href="/delete_task_category/<%= @the_task_category.id %>">
-          Delete task category
-        </a>
-      </div>
+      <% if current_user.role == "admin" %>
+        <div>
+          <a href="/delete_task_category/<%= @the_task_category.id %>">
+            Delete task category
+          </a>
+        </div>
+      <% end %>
     </div>
 
     <dl>
-      <dt>
-        Name
-      </dt>
-      <dd>
-        <%= @the_task_category.name %>
-      </dd>
+      <dt>Name</dt>
+      <dd><%= @the_task_category.name %></dd>
 
-      <dt>
-        Desc
-      </dt>
-      <dd>
-        <%= @the_task_category.desc %>
-      </dd>
+      <dt>Desc</dt>
+      <dd><%= @the_task_category.desc %></dd>
 
-      <dt>
-        Tasks count
-      </dt>
-      <dd>
-        <%= @the_task_category.tasks_count %>
-      </dd>
+      <dt>Tasks count</dt>
+      <dd><%= @the_task_category.tasks_count %></dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_task_category.created_at) %> ago
-      </dd>
+      <dt>Created at</dt>
+      <dd><%= time_ago_in_words(@the_task_category.created_at) %> ago</dd>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_task_category.updated_at) %> ago
-      </dd>
+      <dt>Updated at</dt>
+      <dd><%= time_ago_in_words(@the_task_category.updated_at) %> ago</dd>
     </dl>
   </div>
 </div>
 
 <hr>
 
-
-<div>
+<% if current_user.role == "admin" %>
   <div>
-    <h2>
-      Edit task category
-    </h2>
+    <div>
+      <h2>Edit task category</h2>
 
-    <form action="/modify_task_category/<%= @the_task_category.id %>"  method="post" >
-      <div>
-        <label for="name_box">
-          Name
-        </label>
+      <form action="/modify_task_category/<%= @the_task_category.id %>" method="post">
+        <!-- Form fields for editing the task category -->
+        <div>
+          <label for="name_box">Name</label>
+          <input type="text" id="name_box" name="query_name" value="<%= @the_task_category.name %>">
+        </div>
 
-        <input type="text" id="name_box" name="query_name" value="<%= @the_task_category.name %>">
-      </div>
+        <div>
+          <label for="desc_box">Desc</label>
+          <textarea id="desc_box" name="query_desc"><%= @the_task_category.desc %></textarea>
+        </div>
 
-      <div>
-        <label for="desc_box">
-          Desc
-        </label>
+        <div>
+          <label for="tasks_count_box">Tasks count</label>
+          <input type="text" id="tasks_count_box" name="query_tasks_count" value="<%= @the_task_category.tasks_count %>">
+        </div>
 
-        <textarea id="desc_box" name="query_desc"><%= @the_task_category.desc %></textarea>
-      </div>
-
-      <div>
-        <label for="tasks_count_box">
-          Tasks count
-        </label>
-
-        <input type="text" id="tasks_count_box" name="query_tasks_count" value="<%= @the_task_category.tasks_count %>">
-      </div>
-
-      <button>
-        Update task category
-      </button>
-    </form>
+        <button>Update task category</button>
+      </form>
+    </div>
   </div>
-</div>
+<% end %>
+
+<% if @the_task.requester_id != current_user.id %>
+  <% if @the_task.status == "requested" %>
+    <%= form_with(url: take_on_task_path(@the_task), method: :post) do %>
+      <button>
+        Take on Task
+      </button>
+    <% end %>
+  <% elsif @the_task.status == "in progress" && @the_task.tasker_id == current_user.id %>
+    <%= form_with(url: complete_task_path(@the_task), method: :post) do %>
+      <button>
+        Complete Task
+      </button>
+    <% end %>
+  <% end %>
+<% end %>
 
 <hr>

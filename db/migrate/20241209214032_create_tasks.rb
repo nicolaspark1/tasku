@@ -5,7 +5,7 @@ class CreateTasks < ActiveRecord::Migration[7.1]
       t.text :description
       t.integer :category_id
       t.float :fee
-      t.time :deadline
+      t.datetime :deadline
       t.string :location
       t.integer :requester_id
       t.string :status

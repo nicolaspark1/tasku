@@ -11,106 +11,70 @@
         </a>
       </div>
 
-      <div>
-        <a href="/delete_review/<%= @the_review.id %>">
-          Delete review
-        </a>
-      </div>
+      <% if @the_review.reviewer_id == current_user.id || current_user.role == "admin" %>
+        <div>
+          <a href="/delete_review/<%= @the_review.id %>">
+            Delete review
+          </a>
+        </div>
+      <% end %>
     </div>
 
     <dl>
-      <dt>
-        Task
-      </dt>
-      <dd>
-        <%= @the_review.task_id %>
-      </dd>
+      <dt>Task</dt>
+      <dd><%= @the_review.task_id %></dd>
 
-      <dt>
-        Reviewer
-      </dt>
-      <dd>
-        <%= @the_review.reviewer_id %>
-      </dd>
+      <dt>Reviewer</dt>
+      <dd><%= @the_review.reviewer_id %></dd>
 
-      <dt>
-        Rating
-      </dt>
-      <dd>
-        <%= @the_review.rating %>
-      </dd>
+      <dt>Rating</dt>
+      <dd><%= @the_review.rating %></dd>
 
-      <dt>
-        Comment
-      </dt>
-      <dd>
-        <%= @the_review.comment %>
-      </dd>
+      <dt>Comment</dt>
+      <dd><%= @the_review.comment %></dd>
 
-      <dt>
-        Created at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_review.created_at) %> ago
-      </dd>
+      <dt>Created at</dt>
+      <dd><%= time_ago_in_words(@the_review.created_at) %> ago</dd>
 
-      <dt>
-        Updated at
-      </dt>
-      <dd>
-        <%= time_ago_in_words(@the_review.updated_at) %> ago
-      </dd>
+      <dt>Updated at</dt>
+      <dd><%= time_ago_in_words(@the_review.updated_at) %> ago</dd>
     </dl>
   </div>
 </div>
 
 <hr>
 
-
-<div>
+<% if @the_review.reviewer_id == current_user.id || current_user.role == "admin" %>
   <div>
-    <h2>
-      Edit review
-    </h2>
+    <div>
+      <h2>Edit review</h2>
 
-    <form action="/modify_review/<%= @the_review.id %>"  method="post" >
-      <div>
-        <label for="task_id_box">
-          Task
-        </label>
+      <form action="/modify_review/<%= @the_review.id %>" method="post">
+        <!-- Form fields for editing the review -->
+        <div>
+          <label for="task_id_box">Task</label>
+          <input type="text" id="task_id_box" name="query_task_id" value="<%= @the_review.task_id %>">
+        </div>
 
-        <input type="text" id="task_id_box" name="query_task_id" value="<%= @the_review.task_id %>">
-      </div>
+        <div>
+          <label for="reviewer_id_box">Reviewer</label>
+          <input type="text" id="reviewer_id_box" name="query_reviewer_id" value="<%= @the_review.reviewer_id %>">
+        </div>
 
-      <div>
-        <label for="reviewer_id_box">
-          Reviewer
-        </label>
+        <div>
+          <label for="rating_box">Rating</label>
+          <input type="text" id="rating_box" name="query_rating" value="<%= @the_review.rating %>">
+        </div>
 
-        <input type="text" id="reviewer_id_box" name="query_reviewer_id" value="<%= @the_review.reviewer_id %>">
-      </div>
+        <div>
+          <label for="comment_box">Comment</label>
+          <textarea id="comment_box" name="query_comment"><%= @the_review.comment %></textarea>
+        </div>
 
-      <div>
-        <label for="rating_box">
-          Rating
-        </label>
-
-        <input type="text" id="rating_box" name="query_rating" value="<%= @the_review.rating %>">
-      </div>
-
-      <div>
-        <label for="comment_box">
-          Comment
-        </label>
-
-        <textarea id="comment_box" name="query_comment"><%= @the_review.comment %></textarea>
-      </div>
-
-      <button>
-        Update review
-      </button>
-    </form>
+        <button>Update review</button>
+      </form>
+    </div>
   </div>
-</div>
+<% end %>
 
 <hr>

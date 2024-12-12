@@ -1,4 +1,14 @@
 class ReviewsController < ApplicationController
+  before_action :authorize_review_user, only: [:update, :destroy]
+
+  def authorize_review_user
+    review_id = params.fetch("path_id")
+    review = Review.find(review_id)
+    unless review.reviewer_id == current_user.id || current_user.role == "admin"
+      redirect_to reviews_path, alert: "You are not authorized to perform this action."
+    end
+  end
+  
   def index
     matching_reviews = Review.all
 

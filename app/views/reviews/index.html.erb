@@ -20,23 +20,23 @@
           Task
         </label>
 
-        <input type="text" id="task_id_box" name="query_task_id">
+        <input type="text" id="task_id_box" name="query_task_id" placeholder="Enter the task ID">
       </div>
 
-      <div>
-        <label for="reviewer_id_box">
-          Reviewer
-        </label>
-
-        <input type="text" id="reviewer_id_box" name="query_reviewer_id">
-      </div>
+      <input type="hidden" id="reviewer_id_box" name="query_reviewer_id" value="<%= current_user.id %>">
 
       <div>
         <label for="rating_box">
           Rating
         </label>
 
-        <input type="text" id="rating_box" name="query_rating">
+        <select id="rating_box" name="query_rating">
+          <option value="1">1</option>
+          <option value="2">2</option>
+          <option value="3">3</option>
+          <option value="4">4</option>
+          <option value="5">5</option>
+        </select>
       </div>
 
       <div>

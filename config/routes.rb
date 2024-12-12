@@ -3,6 +3,11 @@ Rails.application.routes.draw do
 
   root to: "tasks#index"
 
+  # routes for taskers
+  post "/tasks/:path_id/take_on", { :controller => "tasks", :action => "take_on" }
+  post "/tasks/:path_id/complete", { :controller => "tasks", :action => "complete" }
+
+
   # Routes for the Review resource:
 
   # CREATE

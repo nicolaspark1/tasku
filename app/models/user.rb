@@ -25,6 +25,15 @@
 class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+
+  def admin?
+    role == "admin"
+  end
+
+  def regular_user?
+    role == "user"
+  end
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -33,4 +42,5 @@ class User < ApplicationRecord
   has_many  :reviews, class_name: "Review", foreign_key: "reviewer_id", dependent: :destroy
   
   has_many  :assignments, class_name: "Task", foreign_key: "tasker_id", dependent: :nullify
+
 end

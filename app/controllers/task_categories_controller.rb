@@ -1,4 +1,12 @@
 class TaskCategoriesController < ApplicationController
+  before_action :authorize_admin, only: [:update, :destroy]
+
+  def authorize_admin
+    unless current_user&.admin?
+      redirect_to task_categories_path, alert: "Only admins can perform this action."
+    end
+  end
+
   def index
     matching_task_categories = TaskCategory.all
 

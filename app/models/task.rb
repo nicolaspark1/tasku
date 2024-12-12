@@ -5,7 +5,7 @@
 #  id            :bigint           not null, primary key
 #  accepted_at   :date
 #  completed_at  :date
-#  deadline      :time
+#  deadline      :datetime
 #  description   :text
 #  fee           :float
 #  location      :string
@@ -19,6 +19,7 @@
 #  tasker_id     :integer
 #
 class Task < ApplicationRecord
+
   belongs_to :requester, required: true, class_name: "User", foreign_key: "requester_id", counter_cache: true
 
   belongs_to :tasker, optional: true, class_name: "User", foreign_key: "tasker_id", counter_cache: :assignments_count

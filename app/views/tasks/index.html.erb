@@ -174,7 +174,9 @@
         </td>
 
         <td>
-          <%= a_task.deadline %>
+          <% if a_task.deadline.present? %>
+            <%= distance_of_time_in_words(Time.current, a_task.deadline) %> remaining
+          <% end %>
         </td>
 
         <td>
