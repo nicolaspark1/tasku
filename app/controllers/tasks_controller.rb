@@ -76,9 +76,9 @@ class TasksController < ApplicationController
       @the_task.tasker_id = current_user.id
       @the_task.status = "in progress"
       @the_task.save
-      redirect_to task_path(@the_task), notice: "You have taken on this task."
+      redirect_to("/tasks/#{@the_task.id}", notice: "You have taken on this task.")
     else
-      redirect_to task_path(@the_task), alert: "This task cannot be taken on."
+      redirect_to("/tasks/#{@the_task.id}", alert: "This task cannot be taken on.")
     end
   end
 
