@@ -69,20 +69,6 @@
   </div>
 <% end %>
 
-<% if @the_task.requester_id != current_user.id %>
-  <% if @the_task.status == "requested" %>
-    <%= form_with(url: take_on_task_path(@the_task), method: :post) do %>
-      <button>
-        Take on Task
-      </button>
-    <% end %>
-  <% elsif @the_task.status == "in progress" && @the_task.tasker_id == current_user.id %>
-    <%= form_with(url: complete_task_path(@the_task), method: :post) do %>
-      <button>
-        Complete Task
-      </button>
-    <% end %>
-  <% end %>
-<% end %>
+
 
 <hr>
